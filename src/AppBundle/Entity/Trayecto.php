@@ -47,6 +47,12 @@ class Trayecto {
      * @ORM\Column(type="integer")
      */
     protected $plazas;
+    
+    /**
+    * @ORM\ManyToOne(targetEntity="Persona", inversedBy="trayectos")
+    * @ORM\JoinColumn(name="persona_id", referencedColumnName="id")
+    */
+    protected $conductor;    
 
     /**
      * Get id
@@ -248,5 +254,29 @@ class Trayecto {
     public function getPlazas()
     {
         return $this->plazas;
+    }
+
+    /**
+     * Set conductor
+     *
+     * @param \AppBundle\Entity\Persona $conductor
+     *
+     * @return Trayecto
+     */
+    public function setConductor(\AppBundle\Entity\Persona $conductor = null)
+    {
+        $this->conductor = $conductor;
+
+        return $this;
+    }
+
+    /**
+     * Get conductor
+     *
+     * @return \AppBundle\Entity\Persona
+     */
+    public function getConductor()
+    {
+        return $this->conductor;
     }
 }
